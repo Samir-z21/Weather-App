@@ -1,0 +1,9 @@
+# Ignore :
+**/*.json
+**/.git
+**/.svn
+**/.hg
+**/node_modules
+**/*.config.js
+**/*.md
+**/dist
