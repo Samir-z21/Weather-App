@@ -1,3 +1,86 @@
-*{
-    background-color: aqua;
+* {
+    margin: 0;
+    padding: 0;
+    
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.optionsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+
+.searchContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 300px; /* Adjust the width as needed */
+}
+
+.locationMarker {
+    width: 50px;
+}
+
+.divSearch {
+    display: flex;
+    justify-content: center;
+}
+
+.searchLocation {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 10px;
+    padding-left: 40px; /* Space for the search icon */
+    box-sizing: border-box;
+}
+
+
+.serchingDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchLoop {
+    position: absolute;
+    left: 40px;
+}
+
+.celsiusFahrenheit {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 60px;
+    height: 30px;
+    padding: 2px;
+    background-color: rgb(204,204,204);
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.celsiusFahrenheit div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 100%;
+    border-radius: 100%;
+}
+
+.activeDegree {
+    background-color: white;
 }
