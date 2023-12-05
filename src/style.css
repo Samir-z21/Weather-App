@@ -12,6 +12,19 @@ body {
     align-items: center;
 }
 
+            /*Left side styling*/
+/*degrees and weather pic*/
+.weather {
+    display: flex;
+    align-items: center;
+}
+
+#currentWeatherContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .optionsContainer {
     display: flex;
     flex-direction: column;
@@ -83,4 +96,9 @@ body {
 
 .activeDegree {
     background-color: white;
+}
+
+.details {
+    display: flex;
+    gap: 10px;
 }
