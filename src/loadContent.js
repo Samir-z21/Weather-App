@@ -1,6 +1,7 @@
 
 const countriesList = require('countries-list');
 
+const {body} = document
 
 // const currentWeatherContainer = document.querySelector('#currentWeatherContainer');
 const cityCountry = document.querySelector('.cityCountry');
@@ -18,9 +19,9 @@ const celsiusFahrenheit = document.querySelector('.celsiusFahrenheit');
 const celsiusBtn = document.querySelector('.celsiusBtn');
 const fahrenheitBtn = document.querySelector('.fahrenheitBtn');
 
+
 celsiusBtn.classList.add('activeDegree');
 
-console.log(countriesList)
 
 function findKeyByCountryName(countryName) {
     for (const key in countriesList.countries) {
@@ -72,5 +73,36 @@ function changeDegrees(currentWeather, fetchedAPI) {
     }
 }
 
+function switchBackgrounds (currentWeather) {
+  if (currentWeather.textDescription.includes("Rain") || 
+      currentWeather.textDescription.includes("Storm") ||
+      currentWeather.textDescription.includes("Pourring") || 
+      currentWeather.textDescription.includes("Wet") ||
+      currentWeather.textDescription.includes("Drizzle")
+  ){
 
-export {displayWeather, changeDegrees}
+    body.style.backgroundImage = 'url("./pictures/rainy.jpg")';
+
+  } else if (currentWeather.textDescription.includes("Cloud") || 
+             currentWeather.textDescription.includes("Overcast") ||
+             currentWeather.textDescription.includes("Fog") ||
+             currentWeather.textDescription.includes("Gloom")
+  ){
+
+    body.style.backgroundImage = 'url("./pictures/cloudy.jpg")';
+
+  } else if (currentWeather.textDescription.includes("Clear") || 
+             currentWeather.textDescription.includes("Sun") ||
+             currentWeather.textDescription.includes("Blank") ||
+             currentWeather.textDescription.includes("Bright")
+){
+
+body.style.backgroundImage = 'url("./pictures/clear.jpg")';
+
+}
+  body.style.backgroundSize = 'cover';
+  body.style.backgroundRepeat = 'no-repeat';
+}
+
+
+export {displayWeather, changeDegrees, switchBackgrounds}

@@ -1,9 +1,12 @@
 import './style.css'
-import {displayWeather, changeDegrees} from './loadContent'
+import {displayWeather, changeDegrees, switchBackgrounds} from './loadContent'
 
 const celsiusFahrenheit = document.querySelector('.celsiusFahrenheit');
+
 const searchContainer = document.querySelector('.searchContainer');
 const searchLocation = document.querySelector('.searchLocation');
+
+const searchLoop = document.querySelector('.searchLoop') 
 
 
 let chosenCity = "Montreal"
@@ -49,6 +52,7 @@ function fetchAPI() {
         response.current.wind_kph
       );
       displayWeather(currentWeather);
+      switchBackgrounds(currentWeather)
     })
     .catch(error => {
       // Handle network errors and other issues
@@ -60,18 +64,21 @@ function fetchAPI() {
 
 
 fetchAPI()
- 
-searchContainer.addEventListener('submit', e => {
-  e.preventDefault();
-  chosenCity = searchLocation.value;
-  fetchAPI();
-  searchLocation.value = "";
-  fetchedAPI = true;
-  changeDegrees(currentWeather, fetchedAPI);
-})
 
 
 celsiusFahrenheit.addEventListener ('click', () => {
   changeDegrees(currentWeather)
 });
 
+function submitSearch (e) {
+  e.preventDefault();
+  chosenCity = searchLocation.value;
+  fetchAPI();
+  searchLocation.value = "";
+  fetchedAPI = true;
+  changeDegrees(currentWeather, fetchedAPI);
+}
+
+
+searchContainer.addEventListener('submit', submitSearch )
+searchLoop.addEventListener('click', submitSearch )
