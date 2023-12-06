@@ -10,21 +10,48 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    color: white;
+    
 }
 
             /*Left side styling*/
 /*degrees and weather pic*/
-.weather {
-    display: flex;
-    align-items: center;
-}
-
 #currentWeatherContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-size: 20px
 }
 
+.cityCountry {
+    font-size: 2.5em;
+    font-weight: 550;
+    text-shadow: 3px 3px 2px rgb(0, 0, 0);
+    padding-bottom: 5px;
+
+}
+
+.weather {
+    display: flex;
+    align-items: center;
+    font-size: 2em;
+}
+
+.textDescription {
+    padding-bottom: 20px;
+    font-size: 1.3em;
+    font-weight: 550;
+
+}
+
+.details {
+    display: flex;
+    gap: 10px;
+}
+
+
+
+            /*Right side styling*/
 .optionsContainer {
     display: flex;
     flex-direction: column;
@@ -50,13 +77,19 @@ body {
 .divSearch {
     display: flex;
     justify-content: center;
+    font-size: 2rem;
+    font-weight: 600;
 }
 
 .searchLocation {
     display: flex;
     justify-content: center;
-    width: 100%;
+    width: 90%;
+    height: 35px;
     padding: 10px;
+    border-radius: 4px; 
+    border: none;
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
     padding-left: 40px; /* Space for the search icon */
     box-sizing: border-box;
 }
@@ -70,7 +103,8 @@ body {
 
 .searchLoop {
     position: absolute;
-    left: 40px;
+    left: 55px;
+    color: black;
 }
 
 .celsiusFahrenheit {
@@ -81,6 +115,7 @@ body {
     height: 30px;
     padding: 2px;
     background-color: rgb(204,204,204);
+    color: black;
     border-radius: 20px;
     cursor: pointer;
 }
@@ -98,10 +133,6 @@ body {
     background-color: white;
 }
 
-.details {
-    display: flex;
-    gap: 10px;
-}
 
 .searchLoop {
     cursor: pointer;

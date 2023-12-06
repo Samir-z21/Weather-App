@@ -15,9 +15,22 @@ const humidity = document.querySelector('.humidity');
 const wind = document.querySelector('.wind');
 
 
+const divSearch = document.querySelector('.divSearch');
+
 const celsiusFahrenheit = document.querySelector('.celsiusFahrenheit');
 const celsiusBtn = document.querySelector('.celsiusBtn');
 const fahrenheitBtn = document.querySelector('.fahrenheitBtn');
+
+
+  const clear = ["clear", "sun", "blank", "Bright",]
+
+  const cloudy = ["cloudy","cloud", "overcast", "fog", "gloom",]
+
+  const rainy = ["rainy", "rain", "storm", "pouring", "wet", "drizzle",]
+
+  const snowy = ["snowy", "snow", "frost", "blizzard", "winter", "cold", "chill", "freeze", ]
+
+  const weatherConditions = [ clear, cloudy, rainy, snowy]
 
 
 celsiusBtn.classList.add('activeDegree');
@@ -25,7 +38,9 @@ celsiusBtn.classList.add('activeDegree');
 
 function findKeyByCountryName(countryName) {
     for (const key in countriesList.countries) {
-      if ((countriesList.countries[key].name === countryName) || (countriesList.countries[key].name.includes(countryName)) || countryName.includes(countriesList.countries[key].name)){
+      if ((countriesList.countries[key].name === countryName) || 
+          (countriesList.countries[key].name.includes(countryName)) || 
+          countryName.includes(countriesList.countries[key].name)){
         return key;
       } 
     }
@@ -37,7 +52,7 @@ function findKeyByCountryName(countryName) {
 function displayWeather (currentWeather) {
     const foundKey = findKeyByCountryName(currentWeather.country);
 
-    cityCountry.textContent = `${currentWeather.city},${foundKey}`;
+    cityCountry.textContent = `${currentWeather.city}, ${foundKey}`;
     uploadDate.textContent = currentWeather.lastUploaded;
     weatherDegrees.textContent = `${Math.round(currentWeather.tempC)}°C`;
     weatherPic.src = `https:${currentWeather.weatherPic}`
@@ -73,33 +88,34 @@ function changeDegrees(currentWeather, fetchedAPI) {
     }
 }
 
-function switchBackgrounds (currentWeather) {
-  if (currentWeather.textDescription.includes("Rain") || 
-      currentWeather.textDescription.includes("Storm") ||
-      currentWeather.textDescription.includes("Pourring") || 
-      currentWeather.textDescription.includes("Wet") ||
-      currentWeather.textDescription.includes("Drizzle")
-  ){
 
-    body.style.backgroundImage = 'url("./pictures/rainy.jpg")';
+function switchBackgrounds(currentWeather) {
+  console.log(currentWeather.textDescription)
+  
+  weatherConditions.forEach((weather) => {
+    weather.forEach(term => {
+      if (currentWeather.textDescription.toLowerCase().indexOf(term) !== -1) {
+        body.style.backgroundImage = `url("./pictures/${weather[0]}.jpg")`;
+        console.log(weather[0])
+      }
 
-  } else if (currentWeather.textDescription.includes("Cloud") || 
-             currentWeather.textDescription.includes("Overcast") ||
-             currentWeather.textDescription.includes("Fog") ||
-             currentWeather.textDescription.includes("Gloom")
-  ){
-
-    body.style.backgroundImage = 'url("./pictures/cloudy.jpg")';
-
-  } else if (currentWeather.textDescription.includes("Clear") || 
-             currentWeather.textDescription.includes("Sun") ||
-             currentWeather.textDescription.includes("Blank") ||
-             currentWeather.textDescription.includes("Bright")
-){
-
-body.style.backgroundImage = 'url("./pictures/clear.jpg")';
-
-}
+        
+        if (body.style.backgroundImage === `url("./pictures/snowy.jpg")`) {
+          body.style.color = "black";
+          cityCountry.style.textShadow = "3px 3px 2px white";
+          weatherDegrees.style.textShadow = "3px 3px 2px white";
+          textDescription.style.textShadow = "3px 3px 2px white";
+          divSearch.style.textShadow = "3px 3px 2px white";
+        }
+        else {
+          body.style.color = "white"
+          cityCountry.style.textShadow = "3px 3px 2px black";
+          weatherDegrees.style.textShadow = "3px 3px 2px black";
+          textDescription.style.textShadow = "3px 3px 2px black";
+          divSearch.style.textShadow = "3px 3px 2px black";
+        }
+    })
+  })
   body.style.backgroundSize = 'cover';
   body.style.backgroundRepeat = 'no-repeat';
 }
